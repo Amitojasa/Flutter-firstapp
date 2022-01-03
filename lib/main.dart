@@ -21,36 +21,37 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Awesome App"),
       ),
-      body: Container(
+      body: Center(
+        child: Container(
           height: 500,
           color: Colors.teal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(20),
-                color: Colors.red,
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                color: Colors.yellow,
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                color: Colors.green,
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-              ),
-            ],
-          )),
+        ),
+      ),
+
+      drawer: Drawer(
+          child: ListView(children: <Widget>[
+        UserAccountsDrawerHeader(
+            accountName: Text("Amitoj Singh"),
+            accountEmail: Text('amitoj@gmail.com'),
+            currentAccountPicture: const CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"))),
+        ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Amitoj SIngh"),
+            subtitle: Text("Developer"),
+            trailing: Icon(Icons.edit),
+            onTap: () {}),
+        ListTile(
+            leading: Icon(Icons.email),
+            title: Text("Email"),
+            subtitle: Text("amitoj@gmail.com"),
+            trailing: Icon(Icons.edit),
+            onTap: () {})
+      ])),
+      floatingActionButton:
+          FloatingActionButton(onPressed: () {}, child: Icon(Icons.edit)),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
     );
   }
 }
