@@ -14,43 +14,93 @@ void main() {
   // runApp(CupertinoApp());
 }
 
-class HomePage extends StatelessWidget {
+// ignore: use_key_in_widget_constructors
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  var myText = "Change My Name";
+  TextEditingController _nameController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[500],
       appBar: AppBar(
-        title: Text("Awesome App"),
+        title: const Text("Awesome App"),
       ),
       body: Center(
-        child: Container(
-          height: 500,
-          color: Colors.teal,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Card(
+                child: Column(
+              children: <Widget>[
+                Image.asset('assets/d.jpg'),
+                const SizedBox(height: 20),
+                Text(myText,
+                    style:
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
+                // ignore: prefer_const_constructors
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Enter Some Text",
+                        labelText: "Name"),
+                  ),
+                )
+              ],
+            )),
+          ),
         ),
       ),
 
       drawer: Drawer(
           child: ListView(children: <Widget>[
+        // ignore: prefer_const_constructors
         UserAccountsDrawerHeader(
-            accountName: Text("Amitoj Singh"),
-            accountEmail: Text('amitoj@gmail.com'),
+            accountName: const Text("Amitoj Singh"),
+            accountEmail: const Text('amitoj@gmail.com'),
             currentAccountPicture: const CircleAvatar(
                 backgroundImage: NetworkImage(
                     "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"))),
         ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Amitoj SIngh"),
-            subtitle: Text("Developer"),
-            trailing: Icon(Icons.edit),
+            leading: const Icon(Icons.person),
+            title: const Text("Amitoj SIngh"),
+            subtitle: const Text("Developer"),
+            trailing: const Icon(Icons.edit),
             onTap: () {}),
         ListTile(
-            leading: Icon(Icons.email),
-            title: Text("Email"),
-            subtitle: Text("amitoj@gmail.com"),
-            trailing: Icon(Icons.edit),
+            leading: const Icon(Icons.email),
+            title: const Text("Email"),
+            subtitle: const Text("amitoj@gmail.com"),
+            trailing: const Icon(Icons.edit),
             onTap: () {})
       ])),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: Icon(Icons.edit)),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            myText = _nameController.text;
+            setState(() {});
+          },
+          child: const Icon(Icons.edit)),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
     );
   }
